@@ -1,14 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
+
 <body>
-    <h1>Hello this is the letter game</h1>
-    
+    <h1 class="ml-5">Hello this is the letter game</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h1>Enter a name to see what happens</h1>
+                <div class="input-group input-group-lg">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroup-sizing-lg">Large</span>
+                    </div>
+                    <input id="user-number" 
+                           type="text" 
+                           class="form-control" 
+                           aria-label="Sizing example input"
+                           aria-describedby="inputGroup-sizing-lg">
+                </div>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-12">
+                <button type="button" 
+                        class="btn btn-dark" 
+                        onclick="handleClick()"
+                >See what happens
+                </button>
+
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-12">
+                <div class="jumbotron jumbotron-fluid">
+                    <div class="container">
+                        <h1 id = "winner" class="display-4 text-center">Winner</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function startGame (){
+            const numbers = ["1", "2", "3", "4", "5"]
+            const randomIndex = Math.floor(Math.random() * numbers.length)
+            const numberToGuess = numbers[randomIndex]
+            console.log(randomIndex)
+            console.log("numberstoguess", numberToGuess)
+        
+        const guesses = [];
+        
+        function handleClick() {
+            const inputEl = document.getElementById("user-number");
+            const userInput = inputEl.value;
+            const winnerEl = document.getElementById("winner");
+            const numbers = ["1", "2", "3", "4", "5"]
+            
+            if (userInput === numberToGuess) {
+                winnerEl.innerHTML = "winner";
+            } else {
+                //if(guesses.indexOf(userInput) > -1)
+                //return alert("yo buddy you did this already!")
+                if(guesses.includes(userInput)){
+                return alert("yo we got this already")
+                }
+                guesses.push(userInput)
+                console.log(guesses)
+                for (let i = 0; i < guesses.length; i++){
+                    const guess = guesses[i];
+                    console.log(guess);
+                }
+                winnerEl.innerHTML = "loser";
+            }
+        } 
+                
+        window.handleClick = handleClick;
+        }
+        startGame();
+
+        
+        
+    </script>
+
 </body>
+
 </html>
